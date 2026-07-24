@@ -21,15 +21,13 @@ depends_on: Union[str, Sequence[str], None] = None
 def upgrade() -> None:
     """Upgrade schema."""
     op.create_table(
-        'productos',
+        'ventas',
         sa.Column("venta_id",sa.Integer, primary_key=True, nullable=False),
-        sa.Column("nombre",sa.String(length=50), nullable=False),
-        sa.Column("costo",sa.Float(),nullable=False),
-        sa.Column("Precio_Venta",sa.Float(),nullable=False),
-        sa.Column("Stock",sa.Integer(),nullable=False),
+        sa.Column("fecha",sa.DateTime(), nullable=False),
+        sa.Column("metodo_pago", sa.String(length=50), nullable=False),
     )
 
 
 def downgrade() -> None:
     """Downgrade schema."""
-    pass
+    op.drop_table('ventas')

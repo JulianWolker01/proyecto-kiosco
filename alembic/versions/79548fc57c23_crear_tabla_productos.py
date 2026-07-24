@@ -22,15 +22,14 @@ def upgrade() -> None:
     """Upgrade schema."""
     op.create_table(
         'productos',
-        sa.Column("id",sa.Integer, primary_key=True, nullable=False),
+        sa.Column("producto_id",sa.Integer, primary_key=True, nullable=False),
         sa.Column("nombre",sa.String(length=50), nullable=False),
-        sa.Column("costo",sa.FLOAT(),nullable=False),
-        sa.Column("Precio_Venta",sa.FLOAT(),nullable=False),
+        sa.Column("costo",sa.Float(),nullable=False),
+        sa.Column("Precio_Venta",sa.Float(),nullable=False),
         sa.Column("Stock",sa.Integer(),nullable=False),
-
     )
 
 
 def downgrade() -> None:
     """Downgrade schema."""
-    pass
+    op.drop_table('productos')
